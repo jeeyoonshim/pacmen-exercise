@@ -9,7 +9,7 @@ let pacMen = []; // This array holds all the pacmen
 function setToRandom(scale) {
   return {
     x: Math.random() * scale,
-    y: Math.random() * scale,
+    y: 35 + Math.random() * (scale - 35),
   };
 }
 
@@ -17,9 +17,9 @@ function setToRandom(scale) {
 function makePac() {
   // returns an object with random values scaled {x: 33, y: 21}
   let velocity = setToRandom(30); // {x:?, y:?}
-  let position = setToRandom(200);
+  let position = setToRandom(400);
   velocity.x = Math.abs(velocity.x);
-  velocity.x *= Math.random() < 0.5 ? 1 : -1;
+  velocity.x *= Math.random() < 0.5 ? 2 : 1;
   // Add image to div id = game
   let game = document.getElementById('game');
   let newimg = document.createElement('img');
@@ -101,9 +101,20 @@ function checkCollisions(item) {
     item.velocity.x = -item.velocity.x;
 }
 
+function clearGame() {
+  window.location.reload();
+}
+
 function makeOne() {
   let pac = makePac();
   pacMen.push(pac); // add a new PacMan
+}
+
+function makeFifty() {
+  for(let i = 0; i < 50; i++) {
+    let pac = makePac();
+    pacMen.push(pac);
+  }
 }
 
 
